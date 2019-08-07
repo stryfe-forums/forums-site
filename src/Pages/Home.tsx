@@ -28,7 +28,7 @@ const Home = ({ trending, leaderboard }: HomeProps) => {
   };
 
   useEffect(() => {
-    getLatest();
+    // getLatest();
   }, [state]);
 
   return (

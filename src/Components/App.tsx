@@ -19,13 +19,11 @@ const App = () => {
 
   const [state, setState] = useState(storedState);
 
-  const [darkMode, setDarkMode] = useState(
-    Boolean(localStorage.getItem('dark')) || false
-  );
+  const [darkMode, setDarkMode] = useState(localStorage.dark === 'true');
 
   const setDark = () => {
     setDarkMode(!darkMode);
-    localStorage.setItem('dark', (!darkMode).toString());
+    localStorage.dark = !darkMode;
   };
 
   const getState = async () => {
@@ -48,7 +46,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    getState();
+    // getState();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state, darkMode]);
 
