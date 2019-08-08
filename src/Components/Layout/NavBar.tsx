@@ -6,18 +6,17 @@ import Logo from '../../Assets/Images/Logo.png';
 
 const NavBar = ({ dark, loggedIn, tag }: NavBarProps) => (
   <>
-    <Navbar
-      color={dark ? 'dark' : 'light'}
-      dark={dark}
-      light={!dark}
-      expand='md'
-    >
+    <Navbar dark={dark} expand='md'>
       <NavbarBrand href='/'>
         <img src={Logo} alt='Stryfe' />
       </NavbarBrand>
-      <Nav className='ml-auto' navbar>
+
+      <Nav navbar className='mr-auto'>
         <NavItem>
-          <NavLink href='/home'>Home</NavLink>
+          <NavLink href='/'>home</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href='/forums'>forums</NavLink>
         </NavItem>
       </Nav>
     </Navbar>

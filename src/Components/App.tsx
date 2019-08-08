@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -52,11 +52,17 @@ const App = () => {
 
   return (
     <>
-      <Router>
-        <NavBar dark={darkMode} />
-        <Route exact path='/' component={Home} />
-        <Footer setDark={setDark} />
-      </Router>
+      <div style={{ backgroundColor: darkMode ? '#252526' : '#FFFFFF' }}>
+        <Router>
+          <NavBar dark={darkMode} />
+          <Route
+            exact
+            path='/'
+            component={() => <Home darkMode={darkMode} />}
+          />
+          <Footer setDark={setDark} />
+        </Router>
+      </div>
     </>
   );
 };
