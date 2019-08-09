@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import { NavBar } from './Layout/NavBar';
 import { Footer } from './Layout/Footer';
@@ -68,6 +68,7 @@ const App = () => {
           darkMode={darkMode}
         />
         <Route exact path='/' component={() => <Home darkMode={darkMode} />} />
+        <Route component={() => <Redirect to='/' />} />
         <Footer setDark={setDark} />
       </Router>
     </div>
