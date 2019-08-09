@@ -9,9 +9,20 @@ const Footer = ({ setDark }: FooterProps) => {
 
   return (
     <>
-      <Button color='primary' id='dark-mode-switcher' onClick={onClick}>
-        Dark Mode
-      </Button>
+      <div className='d-flex flex-row-reverse'>
+        <div className='p-2'>
+          <Button
+            className='float-md-right'
+            color='secondary'
+            id='dark-mode-switcher'
+            onClick={onClick}
+          >
+            <span role='img' aria-label='emoji'>
+              🌙
+            </span>
+          </Button>
+        </div>
+      </div>
     </>
   );
 };

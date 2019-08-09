@@ -9,11 +9,34 @@ const endpoint = process.env.API_ENDPOINT!;
 
 const Home = ({ darkMode }: HomeProps) => {
   const [state, setState] = useState({
-    trending: [],
-    leaderboard: []
+    trending: [
+      {
+        title: 'Title',
+        tag: 'Author',
+        description: 'Description',
+        picture:
+          'https://cdn.discordapp.com/avatars/517016133694521374/45cb929ebc92424fcba0a963f77cea17.webp?size=2048',
+        link: 'https://stryfe.xyz/yahiko'
+      },
+      {
+        title: 'Title',
+        tag: 'Author',
+        description: 'Description',
+        picture:
+          'https://cdn.discordapp.com/avatars/517016133694521374/45cb929ebc92424fcba0a963f77cea17.webp?size=2048',
+        link: 'https://stryfe.xyz/yahiko'
+      }
+    ],
+    leaderboard: [
+      {
+        tag: 'Author',
+        points: 10,
+        picture:
+          'https://cdn.discordapp.com/avatars/517016133694521374/45cb929ebc92424fcba0a963f77cea17.webp?size=2048',
+        link: 'https://stryfe.xyz/yahiko'
+      }
+    ]
   } as HomeState);
-
-  const [loading, setLoading] = useState(true);
 
   const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -42,19 +65,20 @@ const Home = ({ darkMode }: HomeProps) => {
   useEffect(() => {
     // getLatest();
     // verifyJWT();
-  }, [state, token, loading]);
+  }, [state, token]);
 
   return (
     <>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-sm' id='trending-threads'>
-            <TrendingThreads loading={loading} />
-          </div>
+      <div
+        className='d-flex justify-content-center'
+        style={{ padding: '20px 10%' }}
+      >
+        <div className='col-sm' id='trending-threads'>
+          <TrendingThreads trending={state.trending} darkMode={darkMode} />
+        </div>
 
-          <div className='col-sm' id='top-users'>
-            <TopUsers loading={loading} />
-          </div>
+        <div className='col-sm' id='top-users'>
+          <TopUsers leaderboard={state.leaderboard} darkMode={darkMode} />
         </div>
       </div>
     </>
@@ -65,10 +89,11 @@ type HomeState = {
   trending: {
     title: string;
     tag: string;
-    picture: string;
     description: string;
+    picture: string;
+    link: string;
   }[];
-  leaderboard: { tag: string; picture: string; points: number }[];
+  leaderboard: { tag: string; points: number; picture: string; link: string }[];
 };
 
 type HomeProps = {

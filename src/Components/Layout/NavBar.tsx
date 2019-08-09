@@ -1,32 +1,84 @@
 import React from 'react';
 
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import {
+  Navbar,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap';
 
 import Logo from '../../Assets/Images/Logo.png';
 
-const NavBar = ({ dark, loggedIn, tag }: NavBarProps) => (
+import '../../Styles/NavBar.scss';
+
+import { darkModeColor, navbarLight } from '../App';
+
+const LoggedIn = ({ tag, picture }: { tag: string; picture: string }) => (
   <>
-    <Navbar dark={dark} expand='md'>
+    <UncontrolledDropdown nav inNavbar>
+      <DropdownToggle nav caret>
+        <img
+          src={picture}
+          alt='Profile'
+          style={{ margin: '10px', width: '20px', height: '20px' }}
+        />
+
+        {tag}
+      </DropdownToggle>
+      <DropdownMenu right>
+        <DropdownItem href={`/u/${tag}`}>My Profile</DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem href='/logout'>Logout</DropdownItem>
+      </DropdownMenu>
+    </UncontrolledDropdown>
+  </>
+);
+
+const NavBar = ({ darkMode, isLoggedIn, tag, picture }: NavBarProps) => (
+  <>
+    <Navbar
+      expand='md'
+      style={{ backgroundColor: darkMode ? darkModeColor : navbarLight }}
+    >
       <NavbarBrand href='/'>
         <img src={Logo} alt='Stryfe' />
       </NavbarBrand>
 
       <Nav navbar className='mr-auto'>
         <NavItem>
-          <NavLink href='/'>home</NavLink>
+          <NavLink className='navlink' href='/'>
+            home
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href='/forums'>forums</NavLink>
+          <NavLink className='navlink' href='/forums'>
+            forums
+          </NavLink>
         </NavItem>
+      </Nav>
+      <Nav className='ml-auto'>
+        {isLoggedIn ? (
+          <LoggedIn tag={tag} picture={picture} />
+        ) : (
+          <NavLink className='navlink' href=''>
+            login
+          </NavLink>
+        )}
       </Nav>
     </Navbar>
   </>
 );
 
 type NavBarProps = {
-  dark: boolean;
-  loggedIn?: boolean;
-  tag?: string;
+  darkMode: boolean;
+  isLoggedIn: boolean;
+  tag: string;
+  picture: string;
 };
 
 export { NavBar };

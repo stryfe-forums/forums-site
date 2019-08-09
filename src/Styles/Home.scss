@@ -1,6 +1,31 @@
+$darkColor: #252526;
+$lightColor: #e3e4e6;
+
 div#trending-threads {
   margin: 20px;
 }
 div#top-users {
   margin: 20px;
+}
+img.row-img {
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+}
+div.row {
+  padding: 10px;
+  justify-content: center;
+}
+
+a.row-btn {
+  width: 100%;
+  height: 110%;
+}
+
+h1.display-6 {
+  text-align: center;
+}
+
+div.container {
+  margin: auto;
 }
