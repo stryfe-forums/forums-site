@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route
+  // Redirect,
+  // withRouter
+} from 'react-router-dom';
 
 import { NavBar } from './Layout/NavBar';
 import { Footer } from './Layout/Footer';
 
 import { Home } from '../Pages/Home';
+import { Forums } from '../Pages/Forums';
+
+import { Callback } from './Callback';
 
 import '../Styles/Main.scss';
 
@@ -17,15 +25,27 @@ export const lightModeColor = '#E3E4E6';
 
 export const navbarLight = '#F9F9FA';
 
+const defaultState = JSON.stringify({
+  token: null,
+  id: null,
+  tag: null,
+  picture: null,
+  isLoggedIn: false
+} as AppState);
+
 const App = () => {
   if (!localStorage.state) {
-    localStorage.state =
-      '{ "token": null, "id": null, "tag": null, "picture": null, "isLoggedIn": false }';
+    localStorage.state = defaultState;
   }
 
   const storedState: AppState = JSON.parse(localStorage.state);
 
-  const [state, setState] = useState({ ...storedState });
+  const [state, changeState] = useState({ ...storedState });
+
+  const setState = (s: AppState) => {
+    changeState(s);
+    localStorage.state = JSON.stringify(s);
+  };
 
   const [darkMode, setDarkMode] = useState(localStorage.dark === 'true');
 
@@ -34,6 +54,46 @@ const App = () => {
     localStorage.dark = !darkMode;
   };
 
+  useEffect(() => {}, [state, darkMode]);
+
+  return (
+    <div style={{ backgroundColor: darkMode ? darkModeColor : lightModeColor }}>
+      <Router>
+        <NavBar
+          isLoggedIn={state.isLoggedIn}
+          tag={state.tag!}
+          picture={state.picture!}
+          darkMode={darkMode}
+        />
+        <Route exact path='/' component={() => <Home darkMode={darkMode} />} />
+        <Route
+          exact
+          path='/forums/:thread?'
+          component={() => <Forums darkMode={darkMode} />}
+        />
+        <Route
+          exact
+          path='/callback'
+          component={() => <Callback setState={setState} />}
+        />
+        {/* <Route component={() => <Redirect to='/' />} /> */}
+        <Footer setDark={setDark} />
+      </Router>
+    </div>
+  );
+};
+
+type AppState = {
+  token: string | null;
+  id: string | null;
+  tag: string | null;
+  picture: string | null;
+  isLoggedIn: boolean;
+};
+
+export { App };
+
+/*
   const getState = async () => {
     const { token, id } = state;
 
@@ -52,35 +112,4 @@ const App = () => {
 
     setState(json);
   };
-
-  useEffect(() => {
-    // getState();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state, darkMode]);
-
-  return (
-    <div style={{ backgroundColor: darkMode ? darkModeColor : lightModeColor }}>
-      <Router>
-        <NavBar
-          isLoggedIn={state.isLoggedIn}
-          tag={state.tag!}
-          picture={state.picture!}
-          darkMode={darkMode}
-        />
-        <Route exact path='/' component={() => <Home darkMode={darkMode} />} />
-        <Route component={() => <Redirect to='/' />} />
-        <Footer setDark={setDark} />
-      </Router>
-    </div>
-  );
-};
-
-type AppState = {
-  token: string | null;
-  id: string | null;
-  tag: string | null;
-  picture: string | null;
-  isLoggedIn: boolean;
-};
-
-export { App };
+*/

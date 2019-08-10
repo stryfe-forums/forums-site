@@ -65,7 +65,10 @@ const NavBar = ({ darkMode, isLoggedIn, tag, picture }: NavBarProps) => (
         {isLoggedIn ? (
           <LoggedIn tag={tag} picture={picture} />
         ) : (
-          <NavLink className='navlink' href=''>
+          <NavLink
+            className='navlink'
+            href='https://api.stryfe.xyz?redirect=https%3A%2F%2Fstryfe.xyz%2Fcallback'
+          >
             login
           </NavLink>
         )}

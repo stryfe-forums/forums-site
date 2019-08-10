@@ -8,7 +8,7 @@ import '../Styles/Home.scss';
 const endpoint = process.env.API_ENDPOINT!;
 
 const Home = ({ darkMode }: HomeProps) => {
-  const [state, setState] = useState({
+  const [state, setState] = useState<HomeState>({
     trending: [
       {
         title: 'Title',
@@ -36,36 +36,9 @@ const Home = ({ darkMode }: HomeProps) => {
         link: 'https://stryfe.xyz/yahiko'
       }
     ]
-  } as HomeState);
+  });
 
-  const [isLoggedIn, setLoggedIn] = useState(false);
-
-  const [token, setToken] = useState(localStorage.token);
-
-  const getLatest = async () => {
-    const res = await fetch(endpoint, {
-      method: 'GET'
-    });
-
-    const { trending, leaderboard }: HomeState = await res.json();
-
-    setState({ trending, leaderboard });
-  };
-
-  const verifyJWT = async () => {
-    if (!token) return;
-    const res = await fetch(endpoint, {
-      method: 'GET',
-      headers: { Authorization: token }
-    });
-
-    const json = await res.json();
-  };
-
-  useEffect(() => {
-    // getLatest();
-    // verifyJWT();
-  }, [state, token]);
+  useEffect(() => {}, [state]);
 
   return (
     <>
@@ -101,3 +74,25 @@ type HomeProps = {
 };
 
 export { Home };
+
+/*
+  const getLatest = async () => {
+    const res = await fetch(endpoint, {
+      method: 'GET'
+    });
+
+    const { trending, leaderboard }: HomeState = await res.json();
+
+    setState({ trending, leaderboard });
+  };
+
+  const verifyJWT = async () => {
+    if (!token) return;
+    const res = await fetch(endpoint, {
+      method: 'GET',
+      headers: { Authorization: token }
+    });
+
+    const json = await res.json();
+  };
+*/
