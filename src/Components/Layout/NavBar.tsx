@@ -53,12 +53,12 @@ const NavBar = ({ darkMode, isLoggedIn, tag, picture }: NavBarProps) => (
 
       <Nav navbar className='mr-auto'>
         <NavItem>
-          <NavLink tag={Link} className='navlink' href='/'>
+          <NavLink tag={Link} className='navlink' to='/'>
             home
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={Link} className='navlink' href='/forums'>
+          <NavLink tag={Link} className='navlink' to='/forums'>
             forums
           </NavLink>
         </NavItem>
@@ -70,7 +70,7 @@ const NavBar = ({ darkMode, isLoggedIn, tag, picture }: NavBarProps) => (
           <NavLink
             tag={Link}
             className='navlink'
-            href='https://api.stryfe.xyz?redirect=https%3A%2F%2Fstryfe.xyz%2Fcallback'
+            to='https://api.stryfe.xyz?redirect=https%3A%2F%2Fstryfe.xyz%2Fcallback'
           >
             login
           </NavLink>
