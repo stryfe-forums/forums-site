@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import {
   Navbar,
   NavbarBrand,
@@ -51,12 +53,12 @@ const NavBar = ({ darkMode, isLoggedIn, tag, picture }: NavBarProps) => (
 
       <Nav navbar className='mr-auto'>
         <NavItem>
-          <NavLink className='navlink' href='/'>
+          <NavLink tag={Link} className='navlink' href='/'>
             home
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className='navlink' href='/forums'>
+          <NavLink tag={Link} className='navlink' href='/forums'>
             forums
           </NavLink>
         </NavItem>
@@ -66,6 +68,7 @@ const NavBar = ({ darkMode, isLoggedIn, tag, picture }: NavBarProps) => (
           <LoggedIn tag={tag} picture={picture} />
         ) : (
           <NavLink
+            tag={Link}
             className='navlink'
             href='https://api.stryfe.xyz?redirect=https%3A%2F%2Fstryfe.xyz%2Fcallback'
           >
