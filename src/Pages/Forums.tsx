@@ -4,16 +4,25 @@ import { withRouter, RouteComponentProps } from 'react-router';
 
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
+import { Threads } from '../Components/Forums/Threads';
+
 const ForumsComponent = ({ match, darkMode }: ForumsProps) => {
-  const [pinnedThreads, setPinnedThreads] = useState<PinnedThreads>([]);
+  const {
+    params: { thread }
+  } = match;
 
-  const [threadList, setThreadList] = useState<ThreadList>([]);
+  useEffect(() => {
+    window.document.title = 'forums | stryfe';
+  });
 
-  useEffect(() => {}, [pinnedThreads, threadList]);
-
-  const Breadcrumbs = (
+  const Breadcrumbs = thread ? (
     <>
-      <BreadcrumbItem active>{match.params.thread || 'Forums'}</BreadcrumbItem>
+      <BreadcrumbItem>forums</BreadcrumbItem>
+      <BreadcrumbItem active>{thread}</BreadcrumbItem>
+    </>
+  ) : (
+    <>
+      <BreadcrumbItem active>forums</BreadcrumbItem>
     </>
   );
 
@@ -25,6 +34,8 @@ const ForumsComponent = ({ match, darkMode }: ForumsProps) => {
       >
         <div className='container'>
           <Breadcrumb>{Breadcrumbs}</Breadcrumb>
+
+          <Threads />
         </div>
       </div>
     </>

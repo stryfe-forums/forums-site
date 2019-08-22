@@ -40,5 +40,9 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^4.3.4"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/stryfe-forums/forums-site.git",
+  "author": "KnowItAllKing <yahikoxyz@gmail.com>",
+  "license": "y"
 }
