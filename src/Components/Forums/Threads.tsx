@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import x from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 
 import { ThreadList } from './Threads/ThreadList';
 
@@ -23,12 +23,18 @@ const Threads = () => {
   }, [pinnedThreads, threadList]);
   return (
     <>
-      <div className='d-flex justify-content-center'>
-        <ThreadList threads={pinnedThreads} pinned={true} />
-      </div>
-      <div className='d-flex justify-content-center'>
-        <ThreadList threads={threadList} pinned={false} />
-      </div>
+      <Container style={{ padding: 0, maxWidth: '100%' }}>
+        <Row>
+          <div className='d-flex justify-content-center'>
+            <ThreadList threads={pinnedThreads} pinned={true} />
+          </div>
+        </Row>
+        <Row>
+          <div className='d-flex justify-content-center'>
+            <ThreadList threads={threadList} pinned={false} />
+          </div>
+        </Row>
+      </Container>
     </>
   );
 };
@@ -50,7 +56,7 @@ const defaultPinned = [
     description: 'Description',
     picture:
       'https://cdn.discordapp.com/avatars/517016133694521374/45cb929ebc92424fcba0a963f77cea17.webp?size=2048',
-    link: 'https://stryfe.xyz/yahiko'
+    link: '/u/yahiko'
   }
 ];
 
@@ -61,6 +67,6 @@ const defaultThreads = [
     description: 'Description',
     picture:
       'https://cdn.discordapp.com/avatars/517016133694521374/45cb929ebc92424fcba0a963f77cea17.webp?size=2048',
-    link: 'https://stryfe.xyz/yahiko'
+    link: '/u/yahiko'
   }
 ];

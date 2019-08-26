@@ -1,29 +1,30 @@
 import React from 'react';
 
-import { Jumbotron, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col, Jumbotron, Button } from 'reactstrap';
 
 const TopUsers = ({ leaderboard, darkMode }: TopUsersProps) => {
   const rows = leaderboard.map(({ tag, points, picture, link }, i) => (
-    <div className='row' key={i}>
-      <Button href={link} className='row-btn'>
-        <div className='container'>
-          <div className='row'>
+    <Row key={i}>
+      <Button tag={Link} to={link} className='row-btn'>
+        <Container>
+          <Row>
             <img src={picture} className='row-img' alt='Pic' />
-            <div className='col-sm'>{tag}</div>
-            <div className='col-sm'>{points} points</div>
-          </div>
-        </div>
+            <Col>{tag}</Col>
+            <Col className='col-sm'>{points} points</Col>
+          </Row>
+        </Container>
       </Button>
-    </div>
+    </Row>
   ));
 
   return (
     <>
       <Jumbotron>
         <h1 className='display-6'>leaderboard</h1>
-        <div className='container'>
-          <div className='col-sm'>{rows}</div>
-        </div>
+        <Container>
+          <Col>{rows}</Col>
+        </Container>
       </Jumbotron>
     </>
   );

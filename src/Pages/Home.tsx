@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import { Col } from 'reactstrap';
+
 import { TrendingThreads } from '../Components/Home/TrendingThreads';
 import { TopUsers } from '../Components/Home/TopUsers';
 
@@ -20,13 +22,13 @@ const Home = ({ darkMode }: HomeProps) => {
         className='d-flex justify-content-center'
         style={{ padding: '20px 10%' }}
       >
-        <div className='col-sm' id='trending-threads'>
+        <Col id='trending-threads'>
           <TrendingThreads trending={state.trending} darkMode={darkMode} />
-        </div>
+        </Col>
 
-        <div className='col-sm' id='top-users'>
+        <Col id='top-users'>
           <TopUsers leaderboard={state.leaderboard} darkMode={darkMode} />
-        </div>
+        </Col>
       </div>
     </>
   );
@@ -56,16 +58,16 @@ const defaultHomeState = {
       tag: 'Author',
       description: 'Description',
       picture:
-        'https://cdn.discordapp.com/avatars/517016133694521374/45cb929ebc92424fcba0a963f77cea17.webp?size=2048',
-      link: 'https://stryfe.xyz/yahiko'
+        'https://cdn.discordapp.com/avatars/517016133694521374/a_bbc2844312595ed78ea979443dfbbf22.gif',
+      link: '/u/yahiko'
     },
     {
       title: 'Title',
       tag: 'Author',
       description: 'Description',
       picture:
-        'https://cdn.discordapp.com/avatars/517016133694521374/45cb929ebc92424fcba0a963f77cea17.webp?size=2048',
-      link: 'https://stryfe.xyz/yahiko'
+        'https://cdn.discordapp.com/avatars/517016133694521374/a_bbc2844312595ed78ea979443dfbbf22.gif',
+      link: '/u/yahiko'
     }
   ],
   leaderboard: [
@@ -73,8 +75,8 @@ const defaultHomeState = {
       tag: 'Author',
       points: 10,
       picture:
-        'https://cdn.discordapp.com/avatars/517016133694521374/45cb929ebc92424fcba0a963f77cea17.webp?size=2048',
-      link: 'https://stryfe.xyz/yahiko'
+        'https://cdn.discordapp.com/avatars/517016133694521374/a_bbc2844312595ed78ea979443dfbbf22.gif',
+      link: '/u/yahiko'
     }
   ]
 };

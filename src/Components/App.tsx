@@ -21,7 +21,7 @@ const endpoint = process.env.API_ENDPOINT!;
 
 export const darkModeColor = '#252526';
 
-export const lightModeColor = '#E3E4E6';
+export const lightModeColor = '#fbf9ef';
 
 export const navbarLight = '#F9F9FA';
 

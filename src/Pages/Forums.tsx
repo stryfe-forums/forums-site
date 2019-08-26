@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { withRouter, RouteComponentProps } from 'react-router';
 
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Container, Row, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 import { Threads } from '../Components/Forums/Threads';
 
@@ -28,15 +28,15 @@ const ForumsComponent = ({ match, darkMode }: ForumsProps) => {
 
   return (
     <>
-      <div
-        className='d-flex justify-content-center'
-        style={{ padding: '20px 10%' }}
-      >
-        <div className='container'>
-          <Breadcrumb>{Breadcrumbs}</Breadcrumb>
-
-          <Threads />
-        </div>
+      <div className='d-flex justify-content-center' style={{ width: '100%' }}>
+        <Container>
+          <Row>
+            <Breadcrumb>{Breadcrumbs}</Breadcrumb>
+          </Row>
+          <Row>
+            <Threads />
+          </Row>
+        </Container>
       </div>
     </>
   );

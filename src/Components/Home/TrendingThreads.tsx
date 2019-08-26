@@ -1,30 +1,31 @@
 import React from 'react';
 
-import { Jumbotron, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col, Jumbotron, Button } from 'reactstrap';
 
 const TrendingThreads = ({ trending, darkMode }: TrendingThreadsProps) => {
   const rows = trending.map(({ title, tag, description, picture, link }, i) => (
-    <div className='row' key={i}>
-      <Button href={link} className='row-btn'>
-        <div className='container'>
-          <div className='row'>
+    <Row key={i}>
+      <Button tag={Link} to={link} className='row-btn'>
+        <Container>
+          <Row>
             <img src={picture} className='row-img' alt='Pic' />
-            <div className='col-sm'>{title}</div>
-            <div className='col-sm'>{tag}</div>
-            <div className='col-sm'>{description}</div>
-          </div>
-        </div>
+            <Col>{title}</Col>
+            <Col className='col-sm'>{tag}</Col>
+            <Col className='col-sm'>{description}</Col>
+          </Row>
+        </Container>
       </Button>
-    </div>
+    </Row>
   ));
 
   return (
     <>
       <Jumbotron>
         <h1 className='display-6'>trending</h1>
-        <div className='container'>
-          <div className='col-sm'>{rows}</div>
-        </div>
+        <Container>
+          <Col>{rows}</Col>
+        </Container>
       </Jumbotron>
     </>
   );
